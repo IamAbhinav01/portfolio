@@ -1,0 +1,45 @@
+function Hero() {
+  return (
+    <section className="hero">
+      <video autoPlay muted loop className="hero-video">
+        <source
+          src="/assests/Abstract_Particle_Network_Animation_Generated.mp4"
+          type="video/mp4"
+        />
+      </video>
+      <div className="hero-overlay"></div>
+      <div className="hero-container">
+        <div className="hero-content">
+          <h1 className="hero-title">Hi, I'm Abhinav Sunil</h1>
+          <p className="hero-subtitle">
+            AI-Focused Full Stack Developer | AI Scientist | Problem Solver
+          </p>
+
+          <p className="hero-description">
+            I build intelligent, scalable applications that solve real-world
+            problems using AI and modern web technologies. Passionate about
+            clean code, performance, and continuous learning.
+          </p>
+
+          <div className="hero-cta">
+            <a href="#projects" className="btn btn-primary">
+              View My Work
+            </a>
+            <a href="#contact" className="btn btn-secondary">
+              Get In Touch
+            </a>
+          </div>
+        </div>
+        <div className="hero-photo">
+          <img
+            src="/assests/profile.jpg"
+            alt="Abhinav Sunil"
+            className="profile-img"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default Hero;
