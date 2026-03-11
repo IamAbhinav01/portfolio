@@ -26,6 +26,8 @@ function Skills() {
         { name: 'FastAPI', level: 88 },
         { name: 'Node.js', level: 80 },
         { name: 'Express', level: 78 },
+        { name: 'TypeScript', level: 80 },
+        { name: 'Fastify', level: 60 },
         { name: 'REST APIs', level: 86 },
       ],
     },
@@ -46,6 +48,15 @@ function Skills() {
         { name: 'Docker', level: 78 },
         { name: 'Linux', level: 82 },
         { name: 'Postman', level: 84 },
+      ],
+    },
+    {
+      category: 'Soft Skills',
+      skills: [
+        { name: 'Communication ', level: 90 },
+        { name: 'Problem Solving', level: 88 },
+        { name: 'Team Collaboration', level: 85 },
+        { name: 'Time Management', level: 82 },
       ],
     },
   ];

@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.env
+portfolio\server\.env
+portfolio\NAVIGATION_AND_ANIMATIONS.md
+portfolio\DOCKER_README.md
+portfolio\NAVIGATION_AND_ANIMATIONS.m

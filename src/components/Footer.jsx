@@ -7,14 +7,14 @@ function Footer() {
         <p>&copy; {currentYear} Abhinav Sunil. All rights reserved.</p>
         <div className="social-links">
           <a
-            href="https://github.com"
+            href="https://github.com/IamAbhinav01"
             target="_blank"
             rel="noopener noreferrer"
           >
             GitHub
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/abhinav-sunil-870184279/"
             target="_blank"
             rel="noopener noreferrer"
           >
