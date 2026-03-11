@@ -14,12 +14,30 @@ function Contact() {
       [name]: value,
     }));
   };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert("Thank you for your message! I'll get back to you soon.");
-    setFormData({ name: '', email: '', message: '' });
+
+    try {
+      const response = await fetch('http://localhost:5000/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert('Thank you! Your message has been sent.');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        alert(data.error || 'Something went wrong.');
+      }
+    } catch (error) {
+      console.error(error);
+      alert('Server error. Please try again later.');
+    }
   };
 
   return (

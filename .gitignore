@@ -26,4 +26,7 @@ dist-ssr
 portfolio\server\.env
 portfolio\NAVIGATION_AND_ANIMATIONS.md
 portfolio\DOCKER_README.md
-portfolio\NAVIGATION_AND_ANIMATIONS.m
+portfolio\NAVIGATION_AND_ANIMATIONS.md
+portfolio\contact-form-backend\node_modules
+portfolio\contact-form-backend\.env
+.env

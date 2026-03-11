@@ -16,7 +16,7 @@ function Hero() {
         >
           <h1 className="hero-title">Hi, I'm Abhinav Sunil</h1>
           <p className="hero-subtitle">
-            AI-Focused Full Stack Developer | AI Scientist | Problem Solver
+            AI-Focused Full Stack Developer | Problem Solver
           </p>
 
           <p className="hero-description">
