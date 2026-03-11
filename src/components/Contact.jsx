@@ -19,7 +19,7 @@ function Contact() {
 
     try {
       const response = await fetch(
-        'https://portfolio-backend.onrender.com/api/contact',
+        'https://portfolio-1-n864.onrender.com/api/contact',
         {
           method: 'POST',
           headers: {
@@ -115,3 +115,4 @@ function Contact() {
 }
 
 export default Contact;
+
