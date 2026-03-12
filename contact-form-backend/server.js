@@ -22,13 +22,16 @@ const transporter = nodemailer.createTransport({
     pass: process.env.EMAIL_PASS,
   },
 });
+app.get('/healthz', (req, res) => {
+  res.status(200).send('OK');
+});
 
 /* -------------------- Contact Route -------------------- */
 
 app.post('/api/contact', async (req, res) => {
   try {
     const { name, email, message } = req.body;
-
+    console.log('Incoming contact request:', req.body);
     /* -------- Validation -------- */
 
     if (!name || !email || !message) {
