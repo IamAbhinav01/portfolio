@@ -16,7 +16,7 @@ function Contact() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    await fetch('https://contactform-backend-p5d5.onrender.com/api/contact');
     try {
       const response = await fetch(
         'https://contactform-backend-p5d5.onrender.com/api/contact',
