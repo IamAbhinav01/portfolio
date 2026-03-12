@@ -5,6 +5,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: '0.0.0.0', // required for Render
-    port: process.env.PORT || 5173, // use Render's PORT
+    port: process.env.PORT || 5173,
+    allowedHosts: ['portfolio-frontend-ig3p.onrender.com'], // use Render's PORT
   },
 });
