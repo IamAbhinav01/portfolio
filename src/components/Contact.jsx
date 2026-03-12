@@ -19,7 +19,7 @@ function Contact() {
 
     try {
       const response = await fetch(
-        'https://contact-form-backend-pxb9.onrender.com/api/contact',
+        'https://contactform-backend-p5d5.onrender.com/api/contact',
         {
           method: 'POST',
           headers: {
