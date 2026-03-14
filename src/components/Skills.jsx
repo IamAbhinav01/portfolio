@@ -1,94 +1,202 @@
-function Skills() {
-  const skillCategories = [
+import { useRef, useEffect, useState } from 'react';
+
+const SkillCategory = ({ title, skills, index }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div className={`skill-category ${isVisible ? 'visible' : ''}`} ref={ref} style={{ transitionDelay: `${index * 0.1}s` }}>
+      <h3 className="category-title">{title}</h3>
+      <div className="skills-grid">
+        {skills.map((skill, i) => (
+          <div 
+            key={skill} 
+            className="skill-pill" 
+            style={{ transitionDelay: `${(index * 0.1) + (i * 0.05)}s` }}
+          >
+            {skill}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const Skills = () => {
+  const categories = [
     {
-      category: 'Programming Languages',
-      skills: [
-        { name: 'Python', level: 92 },
-        { name: 'JavaScript', level: 86 },
-        { name: 'SQL', level: 80 },
-        { name: 'C++', level: 70 },
-        { name: 'C', level: 65 },
-      ],
+      title: "AI & Machine Learning",
+      skills: ["Python", "PyTorch", "TensorFlow", "NLP", "LangChain", "LLMs", "Mistral AI", "Computer Vision"]
     },
     {
-      category: 'Frontend',
-      skills: [
-        { name: 'React', level: 90 },
-        { name: 'HTML5', level: 92 },
-        { name: 'CSS3', level: 88 },
-        { name: 'Tailwind CSS', level: 82 },
-        { name: 'Vite', level: 78 },
-      ],
+      title: "Backend Development",
+      skills: ["FastAPI", "Django", "Node.js", "Express", "SQL", "PostgreSQL", "AstraDB", "RESTful APIs"]
     },
     {
-      category: 'Backend & APIs',
-      skills: [
-        { name: 'FastAPI', level: 88 },
-        { name: 'Node.js', level: 80 },
-        { name: 'Express', level: 78 },
-        { name: 'TypeScript', level: 80 },
-        { name: 'Fastify', level: 60 },
-        { name: 'REST APIs', level: 86 },
-      ],
+      title: "Frontend Development",
+      skills: ["React", "TypeScript", "JavaScript", "Tailwind CSS", "HTML5", "CSS3", "Vite", "Streamlit"]
     },
     {
-      category: 'AI & Machine Learning',
-      skills: [
-        { name: 'Machine Learning', level: 85 },
-        { name: 'Deep Learning', level: 80 },
-        { name: 'NLP', level: 82 },
-        { name: 'Computer Vision', level: 78 },
-        { name: 'PyTorch', level: 80 },
-      ],
+      title: "Tools & DevOps",
+      skills: ["Docker", "Git", "GitHub", "Linux", "Postman", "OpenCV", "NumPy", "C++"]
     },
     {
-      category: 'DevOps & Tools',
-      skills: [
-        { name: 'Git', level: 90 },
-        { name: 'Docker', level: 78 },
-        { name: 'Linux', level: 82 },
-        { name: 'Postman', level: 84 },
-      ],
-    },
-    {
-      category: 'Soft Skills',
-      skills: [
-        { name: 'Communication ', level: 90 },
-        { name: 'Problem Solving', level: 88 },
-        { name: 'Team Collaboration', level: 85 },
-        { name: 'Time Management', level: 82 },
-      ],
-    },
+      title: "Soft Skills",
+      skills: ["Problem Solving", "Teamwork", "Communication", "Time Management", "Adaptability", "Critical Thinking"]
+    }
   ];
 
   return (
-    <section id="skills">
+    <section id="skills" className="skills-section surface-alt">
       <div className="container">
-        <h2 className="section-title">Skills & Technologies</h2>
-        <div className="skills-grid card-grid">
-          {skillCategories.map((category, idx) => (
-            <div key={idx} className="skill-card">
-              <h3 className="skill-card-title">{category.category}</h3>
-              <div className="skill-list-rows">
-                {category.skills.map((skill, i) => (
-                  <div key={i} className="skill-row">
-                    <div className="skill-label">{skill.name}</div>
-                    <div className="skill-bar">
-                      <div
-                        className="skill-fill"
-                        style={{ width: `${skill.level}%` }}
-                      />
-                      <div className="skill-level">{skill.level}%</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+        <div className="skills-header">
+          <div className="section-tag fade-up visible">Expertise</div>
+          <h2 className="section-title fade-up visible" style={{ animationDelay: '0.1s' }}>
+            Technical <span className="text-highlight">Toolbelt.</span>
+          </h2>
+          <p className="skills-subtitle fade-up visible" style={{ animationDelay: '0.2s' }}>
+            A collection of technologies I use to bring ideas to life.
+          </p>
+        </div>
+
+        <div className="categories-grid">
+          {categories.map((cat, i) => (
+            <SkillCategory key={cat.title} title={cat.title} skills={cat.skills} index={i} />
           ))}
         </div>
       </div>
+
+      <style jsx>{`
+        .skills-section {
+          padding: 120px 20px;
+          background-color: var(--color-surface);
+        }
+
+        .skills-header {
+          text-align: center;
+          max-width: 600px;
+          margin: 0 auto 80px;
+        }
+
+        .section-tag {
+          font-family: var(--font-mono);
+          font-size: 14px;
+          font-weight: 600;
+          color: var(--color-accent);
+          text-transform: uppercase;
+          margin-bottom: 16px;
+          letter-spacing: 0.1em;
+        }
+
+        .section-title {
+          font-size: clamp(2.5rem, 5vw, 3.5rem);
+          margin-bottom: 16px;
+          color: var(--color-text-primary);
+        }
+
+        .text-highlight {
+          color: var(--color-accent);
+        }
+
+        .skills-subtitle {
+          color: var(--color-text-secondary);
+          font-size: 1.1rem;
+        }
+
+        .categories-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 40px;
+        }
+
+        .skill-category {
+          background-color: var(--color-bg);
+          padding: 32px;
+          border-radius: var(--radius-lg);
+          border: 1px solid var(--color-border);
+          transition: var(--transition-slow);
+          opacity: 0;
+          transform: translateY(30px);
+        }
+
+        .skill-category.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .skill-category:hover {
+          border-color: var(--color-accent);
+          box-shadow: var(--shadow-md);
+        }
+
+        .category-title {
+          font-size: 1.25rem;
+          margin-bottom: 24px;
+          color: var(--color-text-primary);
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+
+        .category-title::before {
+          content: '';
+          width: 4px;
+          height: 20px;
+          background-color: var(--color-accent);
+          border-radius: 2px;
+        }
+
+        .skills-grid {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px;
+        }
+
+        .skill-pill {
+          padding: 8px 16px;
+          background-color: var(--color-surface);
+          border: 1px solid var(--color-border);
+          border-radius: 999px;
+          font-size: 13px;
+          font-weight: 500;
+          color: var(--color-text-primary);
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          cursor: none;
+        }
+
+        .skill-pill:hover {
+          background-color: var(--color-accent-soft);
+          border-color: var(--color-accent);
+          color: var(--color-accent);
+          transform: scale(1.05);
+          box-shadow: 0 0 15px var(--color-accent-soft);
+        }
+
+        @media (max-width: 768px) {
+          .skill-category {
+            padding: 24px;
+          }
+        }
+      `}</style>
     </section>
   );
-}
+};
 
 export default Skills;
